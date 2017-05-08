@@ -1,0 +1,75 @@
+<div class="news" id="news" style="width: 300px; height: 185px; border-radius: 6px; margin-left: 7px; background-color: rgb(255, 255, 255); overflow: hidden;">
+
+    <ul style="margin-top: 185px; margin-bottom: 185px;">
+                <li>
+         
+
+
+<?php
+$query = "select * from tbl_news
+ORDER BY pk_int_news_id DESC limit 0,5";
+
+if(!$rs_result=mysqli_query($conkey,$query))  
+{
+   //echo "not ready";
+}
+else
+ {  
+    while($data=mysqli_fetch_array($rs_result))
+    {
+        ?>
+
+
+<a href="index.php?views=<?php echo $data['pk_int_news_id'];?>"><?php echo $data['vchr_news_title'];?></a><img src="images/new1.gif"><br><br>
+<?php
+
+    }
+ }
+
+?>
+
+
+             
+            
+   </li>        </ul>
+
+
+  <script type="text/javascript">
+  // JavaScript will go here
+$(function()
+{
+    $('#news').each(function()
+    {
+        var scroller = $(this);
+        var list = scroller.children('ul');
+
+        var listH = list.height();
+        var scrollerH = scroller.height();
+        list.css({
+            marginTop: scrollerH,
+            marginBottom: scrollerH
+        });
+        scroller.css({
+            overflow: 'hidden'
+        });
+
+        var isOver = false;
+        scroller.bind('mouseenter mouseleave', function(e) {
+            isOver = (e.type == 'mouseenter');
+        });
+
+        var scroll = 0;
+        setInterval(function()
+        {
+            if (isOver) return;
+            scroll++;
+            var newTop = scroll % (listH + scrollerH);
+            scroller.scrollTop(newTop);
+        }, 30);
+
+    });
+});
+  </script>
+<p></p>
+</div>
+

@@ -1,0 +1,33 @@
+top
+
+<link href="css/prettyPhoto.css" rel="stylesheet" type="text/css" />
+
+
+foot
+
+
+ <script src="js/jquery.js"></script> 
+
+<!--BOOTSTRAP JS--> 
+
+<script src="js/jquery.prettyPhoto.js"></script> 
+
+<!--CUSTOM JS-->
+
+ 
+<script src="js/custom.js"></script>
+
+
+
+
+eg
+
+<div class="col-md-4 col-sm-4">
+            <div class="frame"> <img src="upload/gallery/<?php echo $data['vchr_gallery_path'];?>" alt="img">
+              <div class="caption">
+                <div class="holder"> <a href="upload/gallery/<?php echo $data['vchr_gallery_path'];?>" class="link" data-rel="prettyPhoto[gallery1]" rel="prettyPhoto[gallery1]"><i class="fa fa-plus" aria-hidden="true"></i></a> <a href="#" class="link"><i class="fa fa-link" aria-hidden="true"></i></a>
+                  <h3><a href="#"><?php echo $data['vchr_gallery_title'];?></a></h3>
+                </div>
+              </div>
+            </div>
+          </div>

@@ -1,0 +1,63 @@
+if(isset($_POST['submit']))
+{
+
+
+//echo "wrk";
+	print_r($_POST);
+		
+		//count images
+
+		
+		$image_count_query="select count(pk_int_image_id) from tbl_image_gallery";
+
+
+		$res=mysqli_query($conkey,$image_count_query);
+		
+	
+
+		if($data=mysqli_fetch_array($res))
+		{
+
+			//print_r($data);
+			$ref=$data[0];
+			//echo "wr";
+
+			//store tmp name
+
+			$image_tmp=$_FILES['image']['tmp_name'];
+
+
+			//rename file
+
+			function rename_file($image_type,$ref,$model)
+			{
+
+
+				$extension=end(explode("/",$image_type));
+				return $new_image_name='upload/'.$ref.$model.'.'.$extension;	
+			
+			}
+
+			//function calling and return path
+
+			$image=rename_file($_FILES['image']['type'],$ref,'image');
+
+			move_uploaded_file($image_tmp,$image);
+			
+			$title=$_POST['event'];
+
+			$query="insert into tbl_image_gallery values(null,'$image','$title')";
+
+			if(!mysqli_query($conkey,$query))
+			{
+				echo "fail";
+			}
+			else
+			{
+				
+				header("location:home.php?view_image");
+			}
+
+
+	    }
+ }
